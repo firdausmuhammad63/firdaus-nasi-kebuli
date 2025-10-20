@@ -1,1029 +1,899 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen of Njajan - Donat Lembut & Lezat</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <link rel="stylesheet" href="./dist/output.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            font-family: 'Poppins', 'Nunito', sans-serif;
-        }
-        
-        /* Custom Colors */
-        :root {
-            --primary-brown: #8B4513;
-            --light-brown: #D2B48C;
-            --cream: #F5E6D3;
-            --amber-pastel: #FFB6C1;
-            --dark-brown: #654321;
-        }
-        
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .slide-up {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .slide-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Hero Slider */
-        .hero-slider {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .slide.active {
-            opacity: 1;
-        }
-        
-        .slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-        }
-        
-        /* Hamburger Animation */
-        .hamburger {
-            transition: all 0.3s ease;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-        
-        /* Product Card Hover */
-        .product-card {
-            transition: all 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Service Card Hover */
-        .service-card {
-            transition: all 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* FAQ Accordion */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .accordion-content.active {
-            max-height: 200px;
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        /* Floating WhatsApp button animations */
-        @keyframes float {
-        0%,
-        100% {
-            transform: translateY(0);
-        }
+  <!-- SEO Essentials -->
+  <title>Firdaus Nasi Kebuli</title>
+  <meta name="description" content="Nikmati nasi kebuli khas Bu Neneng — hidangan premium bercita rasa Timur Tengah dengan rempah autentik dan daging pilihan. Pesan langsung via marketplace food terafiliasi!" />
+  <meta name="keywords" content="nasi kebuli, nasi kebuli bu neneng, kuliner arab, makanan timur tengah, kebuli enak, nasi kebuli premium, pesan nasi kebuli" />
+  <meta name="author" content="Dapur Nasi Kebuli Bu Neneng" />
+  <meta name="robots" content="index, follow" />
 
-        50% {
-            transform: translateY(-6px);
-        }
-        }
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:title" content="Nasi Kebuli Bu Neneng | Premium" />
+  <meta property="og:description" content="Nasi kebuli autentik, rempah wangi, rasa istimewa — siap pesan!" />
+  <meta property="og:image" content="https://static.promediateknologi.id/crop/0x765:1080x1582/750x500/webp/photo/p1/36/2025/07/17/Screenshot_2025-07-17-17-16-32-134_comgoogleandroidappsmaps-351288658.jpg" />
+  <meta property="og:url" content="https://nasi-kebuli-bu-neneng.netlify.app/" />
+  <meta property="og:type" content="website" />
 
-        @keyframes ping-slow {
-        0% {
-            transform: scale(1);
-            opacity: 0.6;
-        }
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍛</text></svg>" />
 
-        75%,
-        100% {
-            transform: scale(2.2);
-            opacity: 0;
-        }
-        }
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="./dist/output.css" />
 
-        .animate-float {
-        animation: float 1s ease-in-out infinite;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-        .after\:animate-ping-slow::after {
-        animation: ping-slow 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-                
-        /* Google Maps Styling */
-        .map-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .map-overlay {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-        
-        .wa-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .wa-button:hover {
-            transform: scale(1.1);
-        }
-        
-        .wa-text {
-            position: absolute;
-            right: 70px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #333;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .floating-wa:hover .wa-text {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Navbar Scroll Effect */
-        .navbar {
-            transition: all 0.3s ease;
-        }
-        
-        
-        .navbar.scrolled {
-            background: rgba(196, 127, 7, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--pink-pastel);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-brown);
-        }
-    </style>
-<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fef3c7; /* Tailwind amber-50 */
+      color: #92400e; /* Tailwind amber-800 */
+    }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .bg-hero {
+      background: linear-gradient(rgba(139, 69, 19, 0.7), rgba(160, 82, 45, 0.6)),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23D4A574" width="1200" height="800"/><circle cx="300" cy="200" r="80" fill="%23B8860B" opacity="0.3"/><circle cx="900" cy="300" r="120" fill="%23CD853F" opacity="0.2"/><circle cx="600" cy="500" r="100" fill="%23DEB887" opacity="0.4"/></svg>');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #B8860B, #DAA520);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #DAA520, #FFD700);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+    }
+
+    .testimonial-slider {
+      scroll-behavior: smooth;
+    }
+
+    /* Hamburger menu lines */
+    #mobile-menu-btn span {
+      display: block;
+      width: 1.5rem;
+      height: 0.125rem;
+      background-color: #92400e;
+      margin-top: 0.375rem;
+      transition: all 0.3s ease-in-out;
+      border-radius: 9999px;
+    }
+
+    /* Hamburger open state */
+    #mobile-menu-btn.open #hamburger-line-1 {
+      transform: rotate(45deg) translateY(0.5rem);
+    }
+
+    #mobile-menu-btn.open #hamburger-line-2 {
+      opacity: 0;
+    }
+
+    #mobile-menu-btn.open #hamburger-line-3 {
+      transform: rotate(-45deg) translateY(-0.5rem);
+    }
+
+    /* Line clamp for description */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Floating WhatsApp button animations */
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes ping-slow {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+
+      75%,
+      100% {
+        transform: scale(2.2);
+        opacity: 0;
+      }
+    }
+
+    .animate-float {
+      animation: float 1s ease-in-out infinite;
+    }
+
+    .after\:animate-ping-slow::after {
+      animation: ping-slow 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-orange-50 to-amber-50">
 
-  <!-- Navbar -->
-  <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-transparent py-4 px-4 md:px-8 transition-all duration-300">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      
-      <!-- Brand -->
-      <div class="flex items-center space-x-3">
-        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md">
-          <span class="text-amber-600 text-2xl font-bold">Q</span>
-        </div>
-        <div>
-          <h1 class="text-xl font-bold text-amber-300">Queen Of Njajan</h1>
-          <p class="text-sm text-amber-300">Jajanan Termurah Se-Surabaya</p>
-        </div>
-      </div>
+<body>
+<!-- Navbar -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Brand (ikon + teks) -->
+      <a href="#home" class="flex items-center gap-3">
+        <svg class="w-8 h-8 text-amber-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+          <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M7 4c.5.8.4 1.8-.2 2.5C6 7.7 6 8.5 7 9" />
+          <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M11 4c.5.8.4 1.8-.2 2.5C10 7.7 10 8.5 11 9" />
+          <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M3 12c1.5 5 6 8 9 8s7.5-3 9-8H3z" />
+          <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M2 12h20" />
+        </svg>
+        <h1 class="font-serif text-xl font-bold text-amber-800 leading-none">
+          Firdaus <span class="text-yellow-600">Nasi Kebuli</span>
+        </h1>
+      </a>
 
       <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="#home" class="nav-link text-white hover:text-amber-300 transition-colors">Beranda</a>
-        <a href="#products" class="nav-link text-white hover:text-amber-300 transition-colors">Produk</a>
-        <a href="#services" class="nav-link text-white hover:text-amber-300 transition-colors">Layanan</a>
-        <a href="#faq" class="nav-link text-white hover:text-amber-300 transition-colors">FAQ</a>
-        <a href="#location" class="nav-link text-white hover:text-amber-300 transition-colors">Lokasi</a>
-        <a href="#order" class="nav-link text-white hover:text-amber-300 transition-colors">Pesan</a>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          <a href="#home" class="scroll-link text-amber-800 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+          <a href="#menu" class="scroll-link text-amber-800 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-colors">Menu</a>
+          <a href="#testimoni" class="scroll-link text-amber-800 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-colors">Testimoni</a>
+          <a href="#lokasi" class="scroll-link text-amber-800 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-colors">Lokasi</a>
+          <a href="#kontak" class="scroll-link text-amber-800 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-colors">Kontak</a>
+        </div>
       </div>
 
-      <!-- Hamburger (Mobile Only) -->
-      <button id="hamburger" class="hamburger md:hidden flex flex-col items-center space-y-1.5 z-50">
-        <span class="line w-7 h-1 bg-amber-300 rounded-full transition-all duration-300"></span>
-        <span class="line w-7 h-1 bg-amber-300 rounded-full transition-all duration-300"></span>
-        <span class="line w-7 h-1 bg-amber-300 rounded-full transition-all duration-300"></span>
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+      <button id="mobile-menu-btn" aria-label="Toggle menu" class="relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none" aria-expanded="false">
+      <span id="hamburger-line-1" class="block w-6 h-0.5 bg-amber-800 transition-all duration-300 ease-in-out transform"></span>
+      <span id="hamburger-line-2" class="block w-6 h-0.5 bg-amber-800 mt-1.5 transition-all duration-300 ease-in-out transform"></span>
+      <span id="hamburger-line-3" class="block w-6 h-0.5 bg-amber-800 mt-1.5 transition-all duration-300 ease-in-out transform"></span>
       </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg">
-      <div class="flex flex-col py-4">
-        <a href="#home" class="mobile-nav-link px-6 py-3 text-amber-800 hover:bg-amber-50 transition-colors">Beranda</a>
-        <a href="#products" class="mobile-nav-link px-6 py-3 text-amber-800 hover:bg-amber-50 transition-colors">Produk</a>
-        <a href="#services" class="mobile-nav-link px-6 py-3 text-amber-800 hover:bg-amber-50 transition-colors">Layanan</a>
-        <a href="#faq" class="mobile-nav-link px-6 py-3 text-amber-800 hover:bg-amber-50 transition-colors">FAQ</a>
-        <a href="#location" class="mobile-nav-link px-6 py-3 text-amber-800 hover:bg-amber-50 transition-colors">Lokasi</a>
-        <a href="#order" class="mobile-nav-link px-6 py-3 text-amber-800 hover:bg-amber-50 transition-colors">Pesan</a>
       </div>
     </div>
-  </nav>
+  </div>
 
-    
-    <!-- Hero Section -->
-    <section id="home" class="hero-slider relative">
-        <!-- Slide 1 -->
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
-            <div class="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-                <div class="slide-up">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Donat Lembut & Lezat</h1>
-                    <p class="text-xl md:text-2xl mb">dari Queen of Njajan</p>
-                    <p class="text-lg mb-8 max-w-2xl mx-auto">Nikmati kelembutan donat homemade kami setiap hari</p>
-                    <a href="#order" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105">
-                        Pesan Sekarang
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 2 -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1570352412018-d4ad8dd88b75?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287');">
-            <div class="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-                <div class="slide-up">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Homemade dengan Cinta</h1>
-                    <p class="text-xl md:text-2xl">Setiap gigitan adalah kebahagiaan</p>
-                    <p class="text-lg mb-8 max-w-2xl mx-auto">Dibuat dengan bahan berkualitas tinggi setiap hari</p>
-                    <a href="#order" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105">
-                        Pesan Sekarang
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 3 -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1718395828308-da7bf706b337?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1293');">
-            <div class="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-                <div class="slide-up">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Varian Rasa Istimewa</h1>
-                    <p class="text-xl md:text-2xl">Untuk setiap selera</p>
-                    <p class="text-lg mb-8 max-w-2xl mx-auto">Dari klasik hingga inovatif, ada untuk semua orang</p>
-                    <a href="#order" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105">
-                        Pesan Sekarang
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 4 -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1730742645649-c224bbe648b3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287');">
-            <div class="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-                <div class="slide-up">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Queen of Njajan</h1>
-                    <p class="text-xl md:text-2xl">Ratu donat homemade Surabaya</p>
-                    <p class="text-lg mb-8 max-w-2xl mx-auto">Buktikan sendiri kenikmatannya</p>
-                    <a href="#order" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105">
-                        Pesan Sekarang
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slider Indicators -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-            <div class="indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer active"></div>
-            <div class="indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-            <div class="indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-            <div class="indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer"></div>
-        </div>
-    </section>
-    
-    <!-- Products Section -->
-    <section id="products" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Katalog Produk</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Pilih donat favoritmu dari berbagai varian rasa istimewa kami</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <img src="https://images.unsplash.com/photo-1629279903627-49664e8af737?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1216" 
-                         alt="Donat Coklat" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-amber-800 mb-2">Donat Coklat</h3>
-                        <p class="text-2xl font-bold text-amber-600 mb-3">Rp 5.000</p>
-                        <p class="text-gray-600 mb-4">Donat lembut dengan topping coklat premium dan taburan meses</p>
-                        <button onclick="orderViaWhatsApp('Donat Coklat', 5000)" 
-                                class="w-full bg-amber-600 hover:bg-amber-500 text-white py-3 rounded-full font-semibold transition-all">
-                            Pesan via WhatsApp
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <img src="https://images.unsplash.com/photo-1714630011903-77155c14028e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" 
-                         alt="Donat Strawberry" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-amber-800 mb-2">Donat Strawberry</h3>
-                        <p class="text-2xl font-bold text-amber-600 mb-3">Rp 6.000</p>
-                        <p class="text-gray-600 mb-4">Donat dengan glaze strawberry segar dan topping buah</p>
-                        <button onclick="orderViaWhatsApp('Donat Strawberry', 6000)" 
-                                class="w-full bg-amber-600 hover:bg-amber-500 text-white py-3 rounded-full font-semibold transition-all">
-                            Pesan via WhatsApp
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <img src="https://images.unsplash.com/photo-1613243556495-73691853bbf7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740" 
-                         alt="Donat Keju" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-amber-800 mb-2">Donat Keju</h3>
-                        <p class="text-2xl font-bold text-amber-600 mb-3">Rp 7.000</p>
-                        <p class="text-gray-600 mb-4">Donat lembut dengan topping keju creamy dan taburan keju parut</p>
-                        <button onclick="orderViaWhatsApp('Donat Keju', 7000)" 
-                                class="w-full bg-amber-600 hover:bg-amber-500 text-white py-3 rounded-full font-semibold transition-all">
-                            Pesan via WhatsApp
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <img src="https://images.unsplash.com/photo-1582232655383-0826ba4f1347?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8&auto=format&fit=crop&q=60&w=900" 
-                         alt="Donat Blueberry" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-amber-800 mb-2">Donat Blueberry</h3>
-                        <p class="text-2xl font-bold text-amber-600 mb-3">Rp 6.500</p>
-                        <p class="text-gray-600 mb-4">Donat dengan blueberry jam homemade dan glaze manis</p>
-                        <button onclick="orderViaWhatsApp('Donat Blueberry', 6500)" 
-                                class="w-full bg-amber-600 hover:bg-amber-500 text-white py-3 rounded-full font-semibold transition-all">
-                            Pesan via WhatsApp
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <img src="https://images.unsplash.com/photo-1630263380312-939c12d9d09f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGElMjBwaWxlJTIwb2YlMjBkb251dHMlMjBpbiUyMGElMjBib3gufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" 
-                         alt="Donat Mix" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-amber-800 mb-2">Box Mix 6 pcs</h3>
-                        <p class="text-2xl font-bold text-amber-600 mb-3">Rp 30.000</p>
-                        <p class="text-gray-600 mb-4">Kombinasi 6 donat dengan berbagai rasa pilihan</p>
-                        <button onclick="orderViaWhatsApp('Box Mix 6 pcs', 30000)" 
-                                class="w-full bg-amber-600 hover:bg-amber-500 text-white py-3 rounded-full font-semibold transition-all">
-                            Pesan via WhatsApp
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services Section -->
-    <section id="services" class="py-20 px-4 bg-gradient-to-r from-amber-50 to-orange-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Layanan Kami</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Kami berkomitmen memberikan pelayanan terbaik untuk kepuasan pelanggan</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="service-card bg-white rounded-2xl p-8 text-center shadow-lg fade-in">
-                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shipping-fast text-2xl text-amber-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-amber-800 mb-3">Pengiriman Cepat</h3>
-                    <p class="text-gray-600">Pengiriman dalam kota Surabaya maksimal 2 jam dari pemesanan</p>
-                </div>
-                
-                <div class="service-card bg-white rounded-2xl p-8 text-center shadow-lg fade-in">
-                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-bread-slice text-2xl text-amber-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-amber-800 mb-3">Fresh Setiap Hari</h3>
-                    <p class="text-gray-600">Donat dibuat fresh setiap hari dengan bahan berkualitas terbaik</p>
-                </div>
-                
-                <div class="service-card bg-white rounded-2xl p-8 text-center shadow-lg fade-in">
-                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-palette text-2xl text-amber-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-amber-800 mb-3">Custom Pesanan</h3>
-                    <p class="text-gray-600">Bisa custom topping, rasa, dan packaging untuk acara spesial</p>
-                </div>
-                
-                <div class="service-card bg-white rounded-2xl p-8 text-center shadow-lg fade-in">
-                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-hand-holding-heart text-2xl text-amber-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-amber-800 mb-3">Pelayanan Ramah</h3>
-                    <p class="text-gray-600">Tim kami siap membantu dengan pelayanan yang ramah dan cepat</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Pertanyaan yang Sering Diajukan</h2>
-                <p class="text-lg text-gray-600">Temukan jawaban atas pertanyaan umum seputar produk dan layanan kami</p>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="accordion-item bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-amber-50 transition-colors">
-                        <span class="text-lg font-semibold text-amber-800">Apakah bisa pesan custom topping?</span>
-                        <i class="fas fa-chevron-down text-amber-500 transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-gray-600 py-4">Tentu bisa! Kami menerima pesanan custom topping sesuai keinginan Anda. Anda bisa memilih topping seperti coklat, keju, strawberry, blueberry, atau kombinasi. Minimal pemesanan untuk custom adalah 1 lusin.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-amber-50 transition-colors">
-                        <span class="text-lg font-semibold text-amber-800">Berapa minimal order?</span>
-                        <i class="fas fa-chevron-down text-amber-500 transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-gray-600 py-4">Minimal pemesanan adalah 6 pcs (setengah lusin). Untuk pemesanan dalam jumlah besar atau acara khusus, kami memberikan harga khusus. Silakan hubungi kami untuk informasi lebih lanjut.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-amber-50 transition-colors">
-                        <span class="text-lg font-semibold text-amber-800">Apakah tersedia layanan antar?</span>
-                        <i class="fas fa-chevron-down text-amber-500 transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-gray-600 py-4">Ya, kami menyediakan layanan antar untuk area Surabaya dan sekitarnya. Biaya ongkir tergantung jarak lokasi. Untuk area tertentu, kami memberikan gratis ongkir dengan minimal pembelian tertentu.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-amber-50 transition-colors">
-                        <span class="text-lg font-semibold text-amber-800">Bagaimana cara menyimpan donat?</span>
-                        <i class="fas fa-chevron-down text-amber-500 transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-gray-600 py-4">Donat terbaik dinikmati dalam waktu 24 jam. Simpan dalam wadah tertutup pada suhu ruangan. Jika ingin disimpan lebih lama, bisa dimasukkan kulkas dan dipanaskan kembali sebelum dinikmati.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden bg-white border-t max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="#home" class="scroll-link block px-3 py-2 text-amber-800 hover:text-amber-600 text-base font-medium transition-colors">Home</a>
+      <a href="#menu" class="scroll-link block px-3 py-2 text-amber-800 hover:text-amber-600 text-base font-medium transition-colors">Menu</a>
+      <a href="#testimoni" class="scroll-link block px-3 py-2 text-amber-800 hover:text-amber-600 text-base font-medium transition-colors">Testimoni</a>
+      <a href="#lokasi" class="scroll-link block px-3 py-2 text-amber-800 hover:text-amber-600 text-base font-medium transition-colors">Lokasi</a>
+      <a href="#kontak" class="scroll-link block px-3 py-2 text-amber-800 hover:text-amber-600 text-base font-medium transition-colors">Kontak</a>
+    </div>
+  </div>
+</nav>
 
-        <!-- Location Section with Google Maps -->
-    <section id="location" class="py-16 md:py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 md:mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Lokasi Kami</h2>
-                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">Temukan kami di lokasi strategis untuk kemudahan akses</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <!-- Location Info -->
-                <div class="fade-in">
-                    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
-                        <h3 class="text-xl md:text-2xl font-bold text-amber-800 mb-6">Queen of Njajan</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt text-amber-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-amber-800 mb-1">Alamat</h4>
-                                    <p class="text-gray-600 text-sm md:text-base">Jl. Raya Darmo Permai III No. 25<br>Surabaya, Jawa Timur 60226</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-clock text-amber-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-amber-800 mb-1">Jam Operasional</h4>
-                                    <p class="text-gray-600 text-sm md:text-base">Setiap Hari: 08:00 - 20:00 WIB</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-phone text-amber-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-amber-800 mb-1">Kontak</h4>
-                                    <p class="text-gray-600 text-sm md:text-base">0895-4132-63355</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-car text-amber-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-amber-800 mb-1">Parkir</h4>
-                                    <p class="text-gray-600 text-sm md:text-base">Tersedia area parkir yang luas</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 pt-6 border-t border-gray-200">
-                            <a href="https://maps.google.com/?q=Jl.+Raya+Darmo+Permai+III+No.+25+Surabaya" 
-                               target="_blank" 
-                               class="inline-flex items-center space-x-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105">
-                                <i class="fas fa-directions"></i>
-                                <span>Buka di Google Maps</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Google Maps -->
-                <div class="fade-in">
-                    <div class="map-container relative h-96 md:h-[500px]">
-                        <div class="map-overlay">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-store text-white text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-amber-800 text-sm">Queen of Njajan</h4>
-                                    <p class="text-xs text-gray-600">Donat Homemade</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Embedded Google Maps -->
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3969!2d112.7319!3d-7.2575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f96ec1c5c7b1%3A0x1234567890abcdef!2sJl.%20Raya%20Darmo%20Permai%20III%2C%20Surabaya%2C%20Jawa%20Timur!5e0!3m2!1sen!2sid!4v1234567890123!5m2!1sen!2sid"
-                            width="100%" 
-                            height="100%" 
-                            style="border:0; border-radius: 20px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
+  <!-- Hero Section with Slider -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero text-white text-center  px-4 sm:px-6 lg:px-8">
+    <!-- Background Slider -->
+    <div aria-hidden="true" class="absolute inset-0">
+        <div class="slider w-full h-full relative">
+          <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
+            style="background-image: url('https://static.promediateknologi.id/crop/0x765:1080x1582/750x500/webp/photo/p1/36/2025/07/17/Screenshot_2025-07-17-17-16-32-134_comgoogleandroidappsmaps-351288658.jpg');"></div>
+          <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+            style="background-image: url('https://img.inews.co.id/media/822/files/inews_new/2020/08/28/resep_nasi_kebuli_daging_sapi.jpg');"></div>
+          <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+            style="background-image: url('https://cdn-image.hipwee.com/wp-content/uploads/2020/08/hipwee-1d5bcd2e-b5f3-4a75-a085-8f4afdea2d5b.jpeg');"></div>
+          <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+            style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2hQ9XENAUgudNresgz1myvdJw7zq4aW-MoWO5KZHC8bpsQGR9z29QoaliBWb3Ssvh287kH3n1ang3KsFbMKzEHkVO87pb667j0GXHcLrF0RwkZDTg2GtxdwZPZL7o6V9HRaZoUHh265W_SnLCv945b-zNdBoanh8qIUroELz48u0Huzv20fYYWtRB/s1280/maxresdefault%20(1).jpg');"></div>
         </div>
-    </section>
-    
-    <!-- Order Form Section -->
-    <section id="order" class="py-20 px-4 bg-gradient-to-r from-orange-50 to-amber-50">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Form Pemesanan</h2>
-                <p class="text-lg text-gray-600">Isi form di bawah ini untuk memesan donat favorit Anda</p>
-            </div>
-            
-            <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
-                <form id="orderForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="nama" class="block text-sm font-semibold text-amber-800 mb-2">Nama Lengkap</label>
-                            <input type="text" id="nama" name="nama" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all"
-                                   placeholder="Masukkan nama lengkap">
-                        </div>
-                        
-                        <div>
-                            <label for="whatsapp" class="block text-sm font-semibold text-amber-800 mb-2">Nomor WhatsApp</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all"
-                                   placeholder="0812xxxxxx">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="produk" class="block text-sm font-semibold text-amber-800 mb-2">Pilihan Produk</label>
-                            <select id="produk" name="produk" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all">
-                                <option value="">Pilih produk</option>
-                                <option value="Donat Coklat">Donat Coklat - Rp 5.000</option>
-                                <option value="Donat Strawberry">Donat Strawberry - Rp 6.000</option>
-                                <option value="Donat Keju">Donat Keju - Rp 7.000</option>
-                                <option value="Donat Blueberry">Donat Blueberry - Rp 6.500</option>
-                                <option value="Box Mix 6 pcs">Box Mix 6 pcs - Rp 30.000</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="jumlah" class="block text-sm font-semibold text-amber-800 mb-2">Jumlah</label>
-                            <input type="number" id="jumlah" name="jumlah" min="1" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all"
-                                   placeholder="Jumlah pesanan">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label for="catatan" class="block text-sm font-semibold text-amber-800 mb-2">Catatan Tambahan</label>
-                        <textarea id="catatan" name="catatan" rows="3"
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all"
-                                  placeholder="Tulis catatan khusus (opsional)"></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-amber-600 hover:bg-amber-700 text-white py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105">
-                        Kirim Pesanan
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="bg-amber-900 text-white py-9 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h1 class="text-2xl font-bold text-amber-300 mb-4">Queen Of Njajan</h1>
-                    <p class="text-amber-200 mb-4">Donat homemade lembut dan lezat untuk setua momen istimewa Anda.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <i class="fab fa-tiktok text-xl"></i>
-                        </a>
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <i class="fas fa-at text-xl"></i> <!-- Threads icon alternative -->
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Kontak Kami</h4>
-                    <div class="space-y-2 text-amber-200">
-                        <p><i class="fas fa-map-marker-alt mr-2"></i>Jl. Raya Darmo Permai III, Surabaya</p>
-                        <p><i class="fas fa-phone mr-2"></i>0812-3456-7890</p>
-                        <p><i class="fas fa-clock mr-2"></i>Setiap hari: 08:00 - 20:00</p>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Navigasi</h4>
-                    <div class="space-y-2">
-                        <a href="#home" class="block text-amber-200 hover:text-white transition-colors">Beranda</a>
-                        <a href="#products" class="block text-amber-200 hover:text-white transition-colors">Produk</a>
-                        <a href="#services" class="block text-amber-200 hover:text-white transition-colors">Layanan</a>
-                        <a href="#faq" class="block text-amber-200 hover:text-white transition-colors">FAQ</a>
-                        <a href="#location" class="block text-amber-200 hover:text-white transition-colors">Lokasi</a>
-                        <a href="#order" class="block text-amber-200 hover:text-white transition-colors">Pesan</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-amber-800 mt-8 pt-8 text-center text-amber-200">
-                <p>&copy; 2025 Queen of Njajan. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a id="whatsappBtn"
-        href="https://wa.me/62895413263355?text=Assalamu'alaikum,%20Queen%20of%20Njajan,%20saya%20ingin%20pesan%20donat"
-        target="_blank" rel="noopener noreferrer"
-        class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-xl transition transform hover:scale-110 animate-float z-50 
-                after:content-[''] after:absolute after:inset-0 after:rounded-full after:animate-ping-slow after:bg-green-400/30"
-        aria-label="Pesan via WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.52 3.48A11.88 11.88 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.15 1.6 5.95L0 24l6.2-1.62A11.97 11.97 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.2-3.48-8.52zM12 21.82c-1.93 0-3.82-.51-5.48-1.49l-.39-.23-3.69.96.99-3.6-.25-.41A9.82 9.82 0 012.18 12C2.18 6.6 6.6 2.18 12 2.18c2.62 0 5.08 1.02 6.93 2.87a9.79 9.79 0 012.89 6.95c0 5.4-4.42 9.82-9.82 9.82zm5.47-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.17.2-.35.23-.65.08-.3-.15-1.26-.46-2.4-1.46-.89-.79-1.5-1.76-1.67-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.93-2.22-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.81.38s-1.06 1.03-1.06 2.5 1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.17 4.55.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
-        </svg>
-    </a>
+    <!-- Content Wrapper -->
+    <div class="relative z-10 max-w-4xl flex flex-col items-center">
+      <!-- DateTime -->
+      <div id="datetime" 
+          class="mb-4 bg-white/20 backdrop-blur-md text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md border border-white/30 z-20">
+        ...
+      </div>
 
-    <!-- Back to Top Button -->
-        <button id="backToTop"
-            class="fixed bottom-7 right-24 w-14 h-14 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-700 text-white font-bold text-3xl shadow-lg transition-all duration-500 opacity-0 z-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
-            </svg>
+      <!-- Title & Subtitle -->
+      <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+        Rasakan Kelezatan<br />
+        <span class="text-yellow-300">Nasi Kebuli Premium</span>
+      </h1>
+      <p class="text-md md:text-2xl px-4 mb-8 max-w-3xl mx-auto leading-relaxed text-amber-100">
+        Nikmati cita rasa autentik nasi kebuli dengan bumbu rempah pilihan dan daging berkualitas premium
+      </p>
+        <button onclick="scrollToSection('menu')" class="btn-primary text-white px-4 py-3 rounded-full text-lg font-semibold inline-flex items-center space-x-2 bg-yellow-600 hover:bg-yellow-700 transition">
+          <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M120 0C53.73 0 0 53.73 0 120s53.73 120 120 120 120-53.73 120-120S186.27 0 120 0zm56.66 80.52l-18.3 86.3c-1.37 6.57-4.95 8.2-10.04 5.1l-27.75-20.48-13.38 12.88c-1.48 1.48-2.71 2.71-5.55 2.71l2-27.83 50.63-45.77c2.2-1.99-.48-3.1-3.43-1.11l-62.6 39.37-26.91-8.41c-5.83-1.82-5.94-5.83 1.23-8.6l105.64-40.68c4.86-1.84 9.1 1.16 7.57 8.63z"/>
+          </svg>
+          <span>Pesan Sekarang</span>
         </button>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-amber-800 mb-4">Menu Pilihan</h2>
+        <p class="text-lg text-amber-700 max-w-2xl mx-auto">Berbagai varian nasi kebuli dengan cita rasa yang tak terlupakan</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Menu Items -->
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" role="region" aria-label="Nasi Kebuli Ayam">
+          <div class="h-64 overflow-hidden">
+            <img src="https://static.promediateknologi.id/crop/0x765:1080x1582/750x500/webp/photo/p1/36/2025/07/17/Screenshot_2025-07-17-17-16-32-134_comgoogleandroidappsmaps-351288658.jpg" alt="Nasi Kebuli Ayam Premium" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <div class="flex text-yellow-400 mb-2" aria-label="Rating: 5 stars" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-amber-800 mb-2">Nasi Kebuli Ayam</h3>
+            <p class="text-amber-700 text-sm mb-3 line-clamp-2">Ayam kampung premium dengan bumbu rempah tradisional</p>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-bold text-xl text-amber-800">Rp 35.000</span>
+            </div>
+            <button onclick="openMenuDetail('ayam')" 
+                    class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                Lihat Detail
+            </button>
+          </div>
+        </article>
+
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" role="region" aria-label="Nasi Kebuli Kambing">
+          <div class="h-64 overflow-hidden">
+            <img src="https://img.inews.co.id/media/822/files/inews_new/2020/08/28/resep_nasi_kebuli_daging_sapi.jpg" alt="Nasi Kebuli Kambing Premium" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <div class="flex text-yellow-400 mb-2" aria-label="Rating: 5 stars" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-amber-800 mb-2">Nasi Kebuli Kambing</h3>
+            <p class="text-amber-700 text-sm mb-3 line-clamp-2">Daging kambing empuk dengan cita rasa autentik Timur Tengah</p>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-bold text-xl text-amber-800">Rp 45.000</span>
+            </div>
+            <button onclick="openMenuDetail('kambing')" 
+                    class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                Lihat Detail
+            </button>
+          </div>
+        </article>
+
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" role="region" aria-label="Nasi Kebuli Spesial">
+          <div class="h-64 overflow-hidden">
+            <img src="https://cdn-image.hipwee.com/wp-content/uploads/2020/08/hipwee-1d5bcd2e-b5f3-4a75-a085-8f4afdea2d5b.jpeg" alt="Nasi Kebuli Spesial Premium" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <div class="flex text-yellow-400 mb-2" aria-label="Rating: 5 stars" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+            </div>
+              <h3 class="font-serif text-xl font-bold text-amber-800 mb-2">Nasi Kebuli Spesial</h3>
+              <p class="text-amber-700 text-sm mb-3 line-clamp-2">
+                Kombinasi ayam & kambing dengan telur rebus dan acar
+              </p>
+              <div class="flex justify-between items-center mb-3">
+                <span class="font-bold text-xl text-amber-800">Rp 55.000</span>
+              </div>
+              <button onclick="openMenuDetail('spesial')" 
+                      class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                  Lihat Detail
+              </button>
+            </div>
+        </article>
+
+        <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" role="region" aria-label="Nasi Kebuli Seafood">
+          <div class="h-64 overflow-hidden">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2hQ9XENAUgudNresgz1myvdJw7zq4aW-MoWO5KZHC8bpsQGR9z29QoaliBWb3Ssvh287kH3n1ang3KsFbMKzEHkVO87pb667j0GXHcLrF0RwkZDTg2GtxdwZPZL7o6V9HRaZoUHh265W_SnLCv945b-zNdBoanh8qIUroELz48u0Huzv20fYYWtRB/s1280/maxresdefault%20(1).jpg" alt="Nasi Kebuli Seafood Premium" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <div class="flex text-yellow-400 mb-2" aria-label="Rating: 5 stars" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-amber-800 mb-2">Nasi Kebuli Seafood</h3>
+            <p class="text-amber-700 text-sm mb-3 line-clamp-2">Udang dan cumi segar dengan bumbu kebuli modern</p>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-bold text-xl text-amber-800">Rp 65.000</span>
+            </div>
+            <button onclick="openMenuDetail('seafood')" 
+                    class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                Lihat Detail
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimoni Section -->
+  <section id="testimoni" class="py-20 bg-amber-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-amber-800 mb-4">Testimoni Pelanggan</h2>
+        <p class="text-lg text-amber-700">Apa kata mereka tentang <br /> Nasi Kebuli Bu Neneng</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimoni 1 -->
+        <article class="bg-white rounded-2xl p-8 shadow-lg" role="article" aria-label="Testimoni Budi Santoso">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 font-medium bg-amber-200 rounded-full flex items-center justify-center text-2xl mr-4" aria-hidden="true">B</div>
+            <div>
+              <h4 class="font-semibold text-amber-800 text-lg">Budi Santoso</h4>
+              <p class="text-amber-600 text-sm">Pengusaha</p>
+            </div>
+          </div>
+          <p class="text-amber-700 italic leading-relaxed">"Nasi kebuli terenak yang pernah saya coba! Bumbu rempahnya pas banget, dagingnya empuk, dan nasinya pulen. Sudah jadi langganan keluarga kami."</p>
+          <div class="flex text-yellow-400 mt-4" aria-label="Rating: 5 stars" role="img">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+          </div>
+        </article>
+
+        <!-- Testimoni 2 -->
+        <article class="bg-white rounded-2xl p-8 shadow-lg" role="article" aria-label="Testimoni Sari Dewi">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-emerald-200 rounded-full flex items-center justify-center text-2xl mr-4" aria-hidden="true">S</div>
+            <div>
+              <h4 class="font-semibold text-amber-800 text-lg">Sari Dewi</h4>
+              <p class="text-amber-600 text-sm">Ibu Rumah Tangga</p>
+            </div>
+          </div>
+          <p class="text-amber-700 italic leading-relaxed">"Pelayanannya cepat dan ramah. Nasi kebuli kambingnya juara! Anak-anak juga suka banget. Pasti order lagi untuk acara keluarga."</p>
+          <div class="flex text-yellow-400 mt-4" aria-label="Rating: 5 stars" role="img">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+          </div>
+        </article>
+
+        <!-- Testimoni 3 -->
+        <article class="bg-white rounded-2xl p-8 shadow-lg" role="article" aria-label="Testimoni Ahmad Rizki">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center text-2xl mr-4" aria-hidden="true">A</div>
+            <div>
+              <h4 class="font-semibold text-amber-800 text-lg">Ahmad Rizki</h4>
+              <p class="text-amber-600 text-sm">Mahasiswa</p>
+            </div>
+          </div>
+          <p class="text-amber-700 italic leading-relaxed">"Harganya terjangkau tapi rasanya premium banget! Nasi kebuli spesialnya recommended, porsinya juga besar. Worth it!"</p>
+          <div class="flex text-yellow-400 mt-4" aria-label="Rating: 4 stars" role="img">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.402 8.176L12 18.896l-7.336 3.855 1.402-8.176L.132 9.21l8.2-1.192z" />
+            </svg>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan Kami Section -->
+  <section id="layanan" class="py-16 bg-amber-50 relative overflow-hidden">
+    <div class="container mx-auto px-6 lg:px-12 text-center">
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-amber-800 mb-10">Layanan Kami</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <article class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-amber-200 transition-all transform hover:scale-105" role="region" aria-label="Pesan Antar">
+          <div class="mb-4 flex justify-center">
+            <svg class="w-12 h-12 text-amber-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M5 7l1.5 9h11L19 7M8 16v2a2 2 0 002 2h4a2 2 0 002-2v-2" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-amber-800 mb-2">Pesan Antar</h3>
+          <p class="text-gray-600 text-sm">Nikmati Nasi Kebuli Premium tanpa keluar rumah. Kami antar langsung ke lokasi Anda.</p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-amber-200 transition-all transform hover:scale-105" role="region" aria-label="Catering Acara">
+          <div class="mb-4 flex justify-center">
+            <svg class="w-12 h-12 text-amber-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M5 7l1.5 9h11L19 7M6 10h12M7 13h10M8 16h8" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-amber-800 mb-2">Catering Acara</h3>
+          <p class="text-gray-600 text-sm">Tersedia paket prasmanan dan box eksklusif untuk acara keluarga, kantor, atau hajatan.</p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-amber-200 transition-all transform hover:scale-105" role="region" aria-label="Ambil Sendiri">
+          <div class="mb-4 flex justify-center">
+            <svg class="w-12 h-12 text-amber-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10a2 2 0 002 2h12a2 2 0 002-2V10" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-amber-800 mb-2">Ambil Sendiri</h3>
+          <p class="text-gray-600 text-sm">Ingin hemat ongkir? Datang langsung ke dapur Bu Neneng dan nikmati aroma sedapnya.</p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-amber-200 transition-all transform hover:scale-105" role="region" aria-label="Hampers Spesial">
+          <div class="mb-4 flex justify-center">
+            <svg class="w-12 h-12 text-amber-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7m16 0V7a2 2 0 00-2-2h-3.5a1 1 0 01-1-1V3m6.5 9H4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-amber-800 mb-2">Hampers Spesial</h3>
+          <p class="text-gray-600 text-sm">Buat momen istimewa makin berkesan dengan hampers Nasi Kebuli Premium kemasan elegan.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Decorative Circles -->
+    <div class="absolute top-10 left-10 w-24 h-24 bg-amber-100 rounded-full opacity-40" aria-hidden="true"></div>
+    <div class="absolute bottom-10 right-10 w-20 h-20 bg-amber-200 rounded-full opacity-40" aria-hidden="true"></div>
+  </section>
+
+  <!-- Marketplace Affiliations Section -->
+  <section class="py-12 bg-white border-t border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-amber-800 mb-8 font-serif">Juga Kami Terhubung</h2>
+
+      <p class="text-gray-600 mb-10 px-4">Kini Anda dapat menikmati cita rasa khas kami juga melalui platform kuliner favorit Anda.</p>
+
+      <div class="flex flex-wrap justify-center items-center gap-8" role="list">
+        <a href="#" class="group flex items-center gap-3 bg-gray-50 hover:bg-amber-50 transition-all duration-300 px-5 py-3 rounded-2xl shadow-sm" role="listitem" aria-label="GoFood">
+          <img src="https://play-lh.googleusercontent.com/XxpLlA9MTlCNvRMCoJGlpEj5w6tyTZVkGrJi15xv8TG3QzV3zmtCuIczjhCsbU_HenA" alt="Logo GoFood" class="h-8" loading="lazy" />
+          <span class="text-gray-800 font-medium group-hover:text-amber-700">GoFood</span>
+        </a>
+
+        <a href="#" class="group flex items-center gap-3 bg-gray-50 hover:bg-amber-50 transition-all duration-300 px-5 py-3 rounded-2xl shadow-sm" role="listitem" aria-label="GrabFood">
+          <img src="https://aboutcirebon.id/wp-content/uploads/2021/12/grabfood.png" alt="Logo GrabFood" class="h-8" loading="lazy" />
+          <span class="text-gray-800 font-medium group-hover:text-amber-700">GrabFood</span>
+        </a>
+
+        <a href="#" class="group flex items-center gap-3 bg-gray-50 hover:bg-amber-50 transition-all duration-300 px-5 py-3 rounded-2xl shadow-sm" role="listitem" aria-label="ShopeeFood">
+          <img src="https://png.pngtree.com/png-clipart/20221224/original/pngtree-shopefood-logo-png-image_8801636.png" alt="Logo ShopeeFood" class="h-8" loading="lazy" />
+          <span class="text-gray-800 font-medium group-hover:text-amber-700">ShopeeFood</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="lokasi" class="py-20 bg-gradient-to-br from-amber-100 to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-amber-800 mb-4">Lokasi Kami</h2>
+        <p class="text-lg text-amber-700">Temukan kami di south Jakarta</p>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+          <!-- Map -->
+          <div class="relative h-80 lg:h-[450px] overflow-hidden" aria-label="Google Maps location of Nasi Kebuli Bu Neneng" role="region">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7812551491433!2d106.82715331529693!3d-6.175392295528829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e6f1b5f4d1%3A0x3e78edb7d1df7b11!2sMonas%20-%20Jakarta!5e0!3m2!1sid!2sid!4v1696500000000!5m2!1sid!2sid" class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Nasi Kebuli Bu Neneng Location"></iframe>
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/30 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+              <div class="text-6xl mb-3" aria-hidden="true">📍</div>
+              <h3 class="text-2xl font-bold mb-4 drop-shadow-lg">Lokasi Nasi Kebuli Firdaus</h3>
+              <button onclick="openGoogleMaps()" class="bg-white text-amber-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-amber-50 transition-all transform hover:scale-105" aria-label="Buka lokasi di Google Maps">
+                Buka di Google Maps
+              </button>
+            </div>
+            <div class="absolute top-6 left-6 w-3 h-3 bg-amber-400 rounded-full opacity-70" aria-hidden="true"></div>
+            <div class="absolute bottom-8 right-8 w-2 h-2 bg-amber-500 rounded-full opacity-90" aria-hidden="true"></div>
+            <div class="absolute top-1/3 right-6 w-4 h-4 bg-yellow-400 rounded-full opacity-60" aria-hidden="true"></div>
+          </div>
+
+          <!-- Info -->
+          <div class="p-8 lg:p-12">
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="bg-amber-100 p-3 rounded-2xl">
+                  <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-amber-800 text-lg mb-1">Alamat</h3>
+                  <address class="text-amber-700 not-italic">
+                    Jl. Srengseng Sawah <br />Jagakarsa, Jakarta Selatan
+                  </address>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="bg-amber-100 p-3 rounded-2xl">
+                  <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-amber-800 text-lg mb-1">Jam Buka</h3>
+                  <p class="text-amber-700">Setiap Hari: 10.00 - 22.00 WIB</p>
+                  <p class="text-amber-600 text-sm">Delivery hingga 21.30 WIB</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="bg-amber-100 p-3 rounded-2xl">
+                  <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-amber-800 text-lg mb-1">Kontak</h3>
+                  <p class="text-amber-700">+62 895-4132-63355</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-amber-100">
+              <button onclick="orderWhatsApp('Tanya Lokasi')" class="w-full bg-green-500 hover:bg-green-600 text-white py-4 px-6 rounded-2xl font-semibold flex items-center justify-center space-x-3 transition-all transform hover:scale-105 shadow-lg" aria-label="Hubungi via WhatsApp untuk tanya lokasi">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                </svg>
+                <span>Hubungi via WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
-        // Navbar Scroll Effect
-        window.addEventListener("scroll", function() {
-            const navbar = document.querySelector(".navbar");
-            const title = document.querySelector(".navbar h1");      // Brand title
-            const subtitle = document.querySelector(".navbar p");    // Brand subtitle
-            const lines = document.querySelectorAll(".hamburger .line");
+      function openGoogleMaps() {
+        const address = 'Jl. Raya Kebuli No. 123, Kebayoran Baru, Jakarta Selatan 12180';
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+        window.open(mapsUrl, '_blank', 'noopener,noreferrer');
+      }
 
-            if (window.scrollY > 50) {
-                navbar.classList.add("scrolled");
-
-                // Ubah teks navbar menjadi putih
-                title.classList.remove("text-amber-300");
-                title.classList.add("text-white");
-
-                subtitle.classList.remove("text-amber-300");
-                subtitle.classList.add("text-white");
-
-                // Ubah hamburger menjadi putih
-                lines.forEach(line => {
-                    line.classList.remove("bg-amber-300");
-                    line.classList.add("bg-white");
-                });
-            } else {
-                navbar.classList.remove("scrolled");
-
-                // Kembalikan warna teks awal
-                title.classList.remove("text-white");
-                title.classList.add("text-amber-300");
-
-                subtitle.classList.remove("text-white");
-                subtitle.classList.add("text-amber-300");
-
-                // Kembalikan hamburger warna awal
-                lines.forEach(line => {
-                    line.classList.remove("bg-white");
-                    line.classList.add("bg-amber-300");
-                });
-            }
-        });
-
-        // Back to Top Function
-        const whatsappBtn = document.getElementById('whatsappBtn');
-        const backToTop = document.getElementById('backToTop');
-
-        window.addEventListener('scroll',()=>{
-            const y=window.scrollY;
-            if(whatsappBtn) whatsappBtn.style.right = y>500?'20px':'24px';
-            if(backToTop) backToTop.style.opacity = y>300?'1':'0';
-        });
-
-        backToTop?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-        // Mobile Menu Toggle
-        const hamburgerBtn = document.getElementById('hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        hamburgerBtn.addEventListener('click', function() {
-            hamburgerBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when link is clicked
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                hamburgerBtn.classList.remove('active');
-                mobileMenu.classList.add('hidden');
-            });
-        });
-        
-        // Hero Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator');
-        
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
-        }
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        // Auto slide every 5 seconds
-        setInterval(nextSlide, 5000);
-        
-        // Manual slide control
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', function() {
-                currentSlide = index;
-                showSlide(currentSlide);
-            });
-        });
-        
-        // FAQ Accordion
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                const icon = this.querySelector('i');
-                
-                content.classList.toggle('active');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-            });
-        });
-        
-        // Order via WhatsApp
-        function orderViaWhatsApp(productName, price) {
-            const message = `Halo Queen of Njajan, saya ingin pesan ${productName} seharga Rp ${price.toLocaleString()}`;
-            const waUrl = `https://wa.me/62895413263355?text=${encodeURIComponent(message)}`;
-            window.open(waUrl, '_blank');
-        }
-        
-        // Form Validation and Submission
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nama = document.getElementById('nama').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const produk = document.getElementById('produk').value;
-            const jumlah = document.getElementById('jumlah').value;
-            const catatan = document.getElementById('catatan').value;
-            
-            // Basic validation
-            if (!nama || !whatsapp || !produk || !jumlah) {
-                alert('Mohon lengkapi semua field yang wajib diisi');
-                return;
-            }
-            
-            // Validate WhatsApp number
-            const waRegex = /^08[0-9]{8,11}$/;
-            if (!waRegex.test(whatsapp)) {
-                alert('Mohon masukkan nomor WhatsApp yang valid');
-                return;
-            }
-            
-            // Validate quantity
-            if (jumlah < 1) {
-                alert('Jumlah pesanan minimal 1');
-                return;
-            }
-            
-            // Create WhatsApp message
-            let message = `Halo Queen of Njajan,\n\nSaya ingin memesan:\n\n`;
-            message += `Nama: ${nama}\n`;
-            message += `WhatsApp: ${whatsapp}\n`;
-            message += `Produk: ${produk}\n`;
-            message += `Jumlah: ${jumlah} pcs\n`;
-            if (catatan) {
-                message += `Catatan: ${catatan}\n`;
-            }
-            message += `\nMohon konfirmasi ketersediaan dan total pembayaran. Terima kasih!`;
-            
-            // Open WhatsApp
-            const waUrl = `https://wa.me/62895413263355?text=${encodeURIComponent(message)}`;
-            window.open(waUrl, '_blank');
-            
-            // Reset form
-            this.reset();
-        });
-        
-        // Scroll Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe all animated elements
-        document.querySelectorAll('.fade-in, .slide-up').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Smooth scroll untuk semua link anchor
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                const navbarHeight = document.querySelector('.navbar').offsetHeight; // tinggi navbar
-
-                if (target) {
-                    const targetPosition = target.offsetTop - navbarHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-
-                // Jika link dari mobile menu, tutup menu
-                if (this.classList.contains('mobile-nav-link')) {
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    const hamburgerBtn = document.getElementById('hamburger');
-                    mobileMenu.classList.add('hidden');
-                    hamburgerBtn.classList.remove('active');
-                }
-            });
-        });
-        
-        // Add loading animation
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease-in-out';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
+      function orderWhatsApp(pesan) {
+        const phoneNumber = '62895413263355'; // Replace with actual WhatsApp number
+        const message = `Assalamu'alaikum! Saya ingin memesan ${pesan}. Mohon informasi lebih lanjut.`;
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }
     </script>
+  </section>
 
+<!-- Kontak Section: Versi Premium & Sederhana -->
+<section id="kontak" class="relative overflow-hidden py-20 bg-gradient-to-br from-amber-600 to-amber-700">
+  <div class="absolute inset-0 z-0 opacity-10">
+    <!-- Dekorasi Background -->
+    <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="pattern-kontak" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M-1,15 h22 M-1,25 h22 M-1,35 h22" stroke="white" stroke-width="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#pattern-kontak)" />
+    </svg>
+  </div>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white relative z-10">
+    <!-- Judul dan Deskripsi -->
+    <h2 class="font-serif text-5xl md:text-6xl font-bold mb-4 leading-tight drop-shadow-lg">
+      Pesan Sekarang
+    </h2>
+    <p class="text-1xl mb-10 text-amber-100 font-sans leading-relaxed tracking-wide max-w-xl mx-auto">
+      Rasakan kelezatan <span class="font-semibold">nasi kebuli premium</span>.<br> Kami melayani pesanan Anda dengan <span class="italic">fast respon</span>.
+    </p>
+    <!-- Tombol WhatsApp -->
+    <button
+      onclick="orderWhatsApp('Konsultasi Menu')"
+      class="inline-flex items-center space-x-3 transition-all duration-300 transform hover:scale-105
+             bg-green-500 hover:bg-green-600 px-8 py-4 rounded-full text-lg font-semibold text-white
+             shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-400 focus:ring-opacity-75"
+      aria-label="Order via WhatsApp"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+        />
+      </svg>
+      <span>Order via WhatsApp</span>
+    </button>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-amber-900 via-amber-800 to-amber-900 text-amber-100 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" aria-hidden="true">
+      <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="grain" patternUnits="userSpaceOnUse" width="4" height="4">
+            <circle cx="2" cy="2" r="0.5" fill="currentColor" />
+          </pattern>
+        </defs>
+        <rect width="100" height="100" fill="url(#grain)" />
+      </svg>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+        <!-- Brand -->
+        <section class="lg:col-span-2" aria-label="Brand information">
+          <div class="flex items-center mb-6">
+            <div class="bg-gradient-to-br from-yellow-400 to-amber-500 p-3 rounded-2xl mr-4">
+              <svg class="w-8 h-8 text-amber-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+                <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M7 4c.5.8.4 1.8-.2 2.5C6 7.7 6 8.5 7 9" />
+                <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M11 4c.5.8.4 1.8-.2 2.5C10 7.7 10 8.5 11 9" />
+                <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M3 12c1.5 5 6 8 9 8s7.5-3 9-8H3z" />
+                <path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M2 12h20" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-white">Firdaus Nasi Kebuli</h3>
+          </div>
+          <p class="text-amber-200 leading-relaxed text-lg mb-6 max-w-md">
+            Menghadirkan cita rasa autentik nasi kebuli dengan kualitas premium untuk keluarga Indonesia sejak 2020.
+          </p>
+          <div class="mb-6" aria-label="Social media links">
+            <h4 class="font-semibold text-white mb-4 text-lg">Ikuti Kami</h4>
+            <div class="flex space-x-4">
+              <a href="https://instagram.com/nasikebuli" target="_blank" rel="noopener noreferrer" class="group bg-amber-800 hover:bg-pink-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110" aria-label="Instagram">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <a href="https://facebook.com/nasikebuli" target="_blank" rel="noopener noreferrer" class="group bg-amber-800 hover:bg-blue-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110" aria-label="Facebook">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+              <a href="https://tiktok.com/@nasikebuli" target="_blank" rel="noopener noreferrer" class="group bg-amber-800 hover:bg-black p-3 rounded-xl transition-all duration-300 transform hover:scale-110" aria-label="TikTok">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+                </svg>
+              </a>
+              <a href="https://youtube.com/@nasikebuli" target="_blank" rel="noopener noreferrer" class="group bg-amber-800 hover:bg-red-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110" aria-label="YouTube">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+              <a href="https://wa.me/62895 4132 6335 5" target="_blank" rel="noopener noreferrer" class="group bg-amber-800 hover:bg-green-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110" aria-label="WhatsApp">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                </svg>
+              </a>
+            </div>
+          </section>
+
+          <!-- Quick Links -->
+          <section aria-label="Menu Favorit">
+            <h4 class="font-semibold text-white mb-6 text-lg">Menu Favorit</h4>
+            <ul class="space-y-3">
+              <li><a href="#menu" class="text-amber-200 hover:text-yellow-300 transition-colors duration-200 flex items-center group" tabindex="0">
+                  <span class="w-2 h-2 bg-amber-400 rounded-full mr-3 group-hover:bg-yellow-300 transition-colors" aria-hidden="true"></span>
+                  Nasi Kebuli Ayam
+                </a></li>
+              <li><a href="#menu" class="text-amber-200 hover:text-yellow-300 transition-colors duration-200 flex items-center group" tabindex="0">
+                  <span class="w-2 h-2 bg-amber-400 rounded-full mr-3 group-hover:bg-yellow-300 transition-colors" aria-hidden="true"></span>
+                  Nasi Kebuli Kambing
+                </a></li>
+              <li><a href="#menu" class="text-amber-200 hover:text-yellow-300 transition-colors duration-200 flex items-center group" tabindex="0">
+                  <span class="w-2 h-2 bg-amber-400 rounded-full mr-3 group-hover:bg-yellow-300 transition-colors" aria-hidden="true"></span>
+                  Nasi Kebuli Spesial
+                </a></li>
+              <li><a href="#menu" class="text-amber-200 hover:text-yellow-300 transition-colors duration-200 flex items-center group" tabindex="0">
+                  <span class="w-2 h-2 bg-amber-400 rounded-full mr-3 group-hover:bg-yellow-300 transition-colors" aria-hidden="true"></span>
+                  Nasi Kebuli Seafood
+                </a></li>
+            </ul>
+          </section>
+
+          <!-- Contact Info -->
+          <section aria-label="Hubungi Kami">
+            <h4 class="font-semibold text-white mb-6 text-lg">Hubungi Kami</h4>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="bg-amber-700 p-2 rounded-lg mt-1">
+                  <svg class="w-4 h-4 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <address class="text-amber-200 text-sm not-italic">
+                  Jl. Srengseng Sawah, <br>Jagakarsa, Jakarta Selatan
+                </address>
+              </div>
+
+              <div class="flex items-center space-x-3">
+                <div class="bg-amber-700 p-2 rounded-lg">
+                  <svg class="w-4 h-4 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <p class="text-amber-200">+62895 4132 6335 5</p>
+              </div>
+
+              <div class="flex items-center space-x-3">
+                <div class="bg-amber-700 p-2 rounded-lg">
+                  <svg class="w-4 h-4 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-amber-200 text-sm">Senin - Minggu</p>
+                  <p class="text-amber-200 text-sm">10.00 - 22.00 WIB</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Newsletter -->
+        <section aria-label="Newsletter subscription" class="bg-amber-800 bg-opacity-50 rounded-2xl p-8 mb-8">
+          <div class="text-center max-w-2xl mx-auto">
+            <h4 class="font-serif text-2xl font-bold text-white mb-3">Dapatkan Promo Terbaru!</h4>
+            <p class="text-amber-200 mb-6">Berlangganan newsletter kami dan dapatkan diskon spesial untuk pemesanan pertama</p>
+            <form onsubmit="subscribeNewsletter(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" novalidate>
+              <input type="email" id="emailInput" placeholder="Masukkan email Anda" class="flex-1 px-4 py-3 rounded-xl bg-white text-amber-900 placeholder-amber-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-label="Masukkan email Anda" />
+              <button type="submit" class="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-amber-900 px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105">
+                Berlangganan
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-amber-700 pt-6 text-center">
+          <p class="text-sm text-amber-300">
+            © 2025 <span class="font-semibold text-yellow-400">Firdaus Nasi Kebuli</span>. All rights reserved.
+          </p>
+          <p class="text-xs text-amber-400 mt-1">Made with ❤️ in Jakarta</p>
+        </div>
+      </div>
+  </footer>
+
+  <!-- Menu Detail Modal -->
+  <div id="menuModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-lg">
+      <div class="relative">
+        <button onclick="closeMenuDetail()" aria-label="Tutup detail menu" class="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-600">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <div id="modalContent" tabindex="0">
+          <!-- Content dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Button -->
+  <a id="whatsappBtn"
+    href="https://wa.me/62895413263355?text=Assalamu'alaikum,%20saya%20mau%20pesan%20Nasi%20Kebuli%20Premium"
+    target="_blank" rel="noopener noreferrer"
+    class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-xl transition transform hover:scale-110 animate-float z-50 
+            after:content-[''] after:absolute after:inset-0 after:rounded-full after:animate-ping-slow after:bg-green-400/30"
+    aria-label="Pesan via WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.52 3.48A11.88 11.88 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.15 1.6 5.95L0 24l6.2-1.62A11.97 11.97 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.2-3.48-8.52zM12 21.82c-1.93 0-3.82-.51-5.48-1.49l-.39-.23-3.69.96.99-3.6-.25-.41A9.82 9.82 0 012.18 12C2.18 6.6 6.6 2.18 12 2.18c2.62 0 5.08 1.02 6.93 2.87a9.79 9.79 0 012.89 6.95c0 5.4-4.42 9.82-9.82 9.82zm5.47-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.17.2-.35.23-.65.08-.3-.15-1.26-.46-2.4-1.46-.89-.79-1.5-1.76-1.67-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.93-2.22-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.81.38s-1.06 1.03-1.06 2.5 1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.17 4.55.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+    </svg>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop"
+          class="fixed bottom-7 right-24 w-14 h-14 flex items-center justify-center rounded-full bg-amber-600 text-white font-bold text-2xl shadow-lg transition-all duration-500 opacity-0 z-50">
+    ↑
+  </button>
+
+<script src="app.js" ></script>
 </body>
 </html>

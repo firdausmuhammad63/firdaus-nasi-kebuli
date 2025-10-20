@@ -17,18 +17,13 @@ const toggleMobileMenu = () => {
     mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
     mobileMenu.classList.remove('opacity-0');
     mobileMenu.classList.add('opacity-100');
+    mobileMenuBtn.classList.add('open'); // ✅ TAMBAH INI
   } else {
     mobileMenu.style.maxHeight = "0px";
     mobileMenu.classList.remove('opacity-100');
     mobileMenu.classList.add('opacity-0');
+    mobileMenuBtn.classList.remove('open'); // ✅ TAMBAH INI
   }
-
-  // Hamburger animation
-  hamburgerLine1.classList.toggle('rotate-45', isMenuOpen);
-  hamburgerLine1.classList.toggle('translate-y-2', isMenuOpen);
-  hamburgerLine2.classList.toggle('opacity-0', isMenuOpen);
-  hamburgerLine3.classList.toggle('-rotate-45', isMenuOpen);
-  hamburgerLine3.classList.toggle('-translate-y-2', isMenuOpen);
 
   mobileMenuBtn.setAttribute('aria-expanded', isMenuOpen);
 };
@@ -46,7 +41,6 @@ document.addEventListener('click', (e) => {
     toggleMobileMenu();
   }
 });
-
 
   // ================================
   // SMOOTH SCROLL WITH OFFSET
