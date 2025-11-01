@@ -60,9 +60,9 @@ Kami percaya bahwa setiap hidangan bukan sekadar makanan, tapi pengalaman yang m
 
 ## 📞 Kontak
 
-📍 **Alamat:** Jl. [Nama Jalan], [Kota]  
-📱 **WhatsApp:** [Nomor WA aktif]  
-🌐 **Website:** [https://firdausnasikebuli.com](https://firdausnasikebuli.com)
+📍 **Alamat:** Jakarta Selatan 
+📱 **WhatsApp:** -
+🌐 **Website:** cooming soon
 
 ---
 
